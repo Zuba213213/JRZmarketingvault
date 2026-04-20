@@ -9,16 +9,18 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --ink: #0d0d0d;
-    --gold: #b8972e;
-    --gold-light: #d4b04a;
-    --gold-dim: #8a6e1f;
-    --cream: #f4efe6;
-    --cream-dim: #e8e0d0;
-    --smoke: #1a1714;
-    --ash: #2a2520;
-    --muted: #6b6155;
-    --rule: rgba(184,151,46,0.25);
+    --ink: #0e0c0a;
+    --gold: #c09a38;
+    --gold-light: #d9b85a;
+    --gold-dim: #8a6e20;
+    --gold-rule: rgba(192,154,56,0.3);
+    --cream: #f5f0e8;
+    --cream-dim: #ddd5c4;
+    --smoke: #1c1914;
+    --muted: #7a6e5f;
+    --body-size: 20px;
+    --lead-size: 24px;
+    --small-size: 20px;
   }
 
   html { scroll-behavior: smooth; }
@@ -27,398 +29,720 @@
     background: var(--ink);
     color: var(--cream);
     font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    line-height: 1.75;
+    font-size: var(--body-size);
+    line-height: 1.8;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 999;
-    opacity: 0.5;
-  }
-
-  .container {
+  /* ── CONTAINER ── */
+  .wrap {
     width: 100%;
-    max-width: 680px;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 28px;
   }
 
-  section { padding: 72px 0; }
-  section + section { border-top: 1px solid var(--rule); }
+  /* ── SECTIONS ── */
+  .section {
+    padding: 80px 0;
+    border-top: 1px solid var(--gold-rule);
+  }
 
+  .section:first-of-type { border-top: none; }
+
+  /* ── EYEBROW ── */
   .eyebrow {
     font-family: 'Cinzel', serif;
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 600;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 20px;
     display: block;
+    margin-bottom: 18px;
   }
 
+  /* ── HEADINGS ── */
+  h1, h2, h3 {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    color: var(--cream);
+  }
+
+  h1 {
+    font-size: clamp(40px, 10vw, 68px);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  h1 em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-light);
+    font-size: 1.08em;
+  }
+
+  h2 {
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  h2 em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-light);
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+
+  /* ── BODY TEXT ── */
+  p {
+    font-size: var(--body-size);
+    font-weight: 300;
+    color: var(--cream-dim);
+    line-height: 1.85;
+    margin-bottom: 22px;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  .lead {
+    font-size: var(--lead-size);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.75;
+    margin-bottom: 28px;
+  }
+
+  .lead strong {
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .section-intro {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    border-left: 3px solid var(--gold);
+    padding: 18px 0 18px 28px;
+    margin: 40px 0;
+  }
+
+  .pull-quote p {
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── HERO ── */
   .hero {
-    padding: 100px 0 80px;
+    padding: 100px 0 88px;
     text-align: center;
     border-top: none;
   }
 
   .hero-rule {
     width: 1px;
-    height: 60px;
+    height: 64px;
     background: linear-gradient(to bottom, transparent, var(--gold));
-    margin: 0 auto 36px;
+    margin: 0 auto 40px;
   }
 
-  .brand-line {
+  .brand-mark {
     font-family: 'Cinzel', serif;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.28em;
+    font-size: 13px;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--gold-dim);
-    margin-bottom: 36px;
-  }
-
-  .hero h1 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(38px, 9vw, 64px);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: 0.04em;
-    color: var(--cream);
-    margin-bottom: 8px;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    color: var(--gold-light);
-    font-size: 1.05em;
+    margin-bottom: 40px;
   }
 
   .hero-sub {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 300;
     font-style: italic;
     color: var(--muted);
-    margin: 28px auto 0;
-    max-width: 480px;
+    max-width: 500px;
+    margin: 32px auto 0;
     line-height: 1.65;
   }
 
-  .hero-divider {
+  .divider-label {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin: 48px auto 0;
-    max-width: 320px;
+    gap: 18px;
+    margin: 56px auto 0;
+    max-width: 340px;
   }
-  .hero-divider::before, .hero-divider::after {
+  .divider-label::before,
+  .divider-label::after {
     content: '';
     flex: 1;
     height: 1px;
-    background: var(--rule);
+    background: var(--gold-rule);
   }
-  .hero-divider span {
+  .divider-label span {
     font-family: 'Cinzel', serif;
-    font-size: 9px;
-    letter-spacing: 0.2em;
+    font-size: 12px;
+    letter-spacing: 0.24em;
     color: var(--gold-dim);
     text-transform: uppercase;
     white-space: nowrap;
   }
 
-  .intro-statement {
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--cream);
-    margin-bottom: 32px;
+  /* ── STEP ONE BADGE ── */
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--gold-dim);
+    padding: 12px 20px;
+    margin-bottom: 36px;
+    background: rgba(192,154,56,0.05);
   }
 
-  .intro-statement strong {
-    font-weight: 600;
-    color: var(--gold-light);
-  }
-
-  p {
-    font-size: 18px;
-    font-weight: 300;
-    color: var(--cream-dim);
-    line-height: 1.8;
-    margin-bottom: 20px;
-  }
-
-  p:last-child { margin-bottom: 0; }
-
-  .pull-quote {
-    border-left: 2px solid var(--gold);
-    padding: 20px 0 20px 28px;
-    margin: 40px 0;
-  }
-
-  .pull-quote p {
-    font-size: 21px;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--cream);
-    line-height: 1.65;
-    margin: 0;
-  }
-
-  .section-title {
+  .step-badge-num {
     font-family: 'Cinzel', serif;
-    font-size: clamp(22px, 5vw, 30px);
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: var(--cream);
-    margin-bottom: 12px;
-    line-height: 1.25;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
   }
 
-  .section-title em {
-    font-style: italic;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    color: var(--gold-light);
+  .step-badge-text {
+    text-align: left;
   }
 
-  .section-lead {
-    font-size: 19px;
-    font-style: italic;
-    font-weight: 300;
-    color: var(--muted);
-    margin-bottom: 44px;
-    line-height: 1.6;
-  }
-
-  .deliverable {
-    background: var(--smoke);
-    border: 1px solid var(--rule);
-    border-left: 3px solid var(--gold-dim);
-    padding: 32px 28px;
-    margin-bottom: 20px;
-    transition: border-left-color 0.2s;
-  }
-
-  .deliverable:hover { border-left-color: var(--gold); }
-
-  .deliverable-number {
+  .step-badge-text strong {
     font-family: 'Cinzel', serif;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.2em;
-    color: var(--gold-dim);
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    color: var(--cream);
     display: block;
   }
 
-  .deliverable-title {
-    font-family: 'Cinzel', serif;
-    font-size: 17px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: var(--cream);
-    margin-bottom: 10px;
-    line-height: 1.3;
-  }
-
-  .deliverable-tag {
-    display: inline-block;
-    font-family: 'Cinzel', serif;
-    font-size: 9px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid var(--rule);
-    padding: 3px 10px;
-    margin-bottom: 14px;
-  }
-
-  .deliverable p {
-    font-size: 16px;
-    line-height: 1.75;
-    color: var(--muted);
-    margin-bottom: 14px;
-  }
-
-  .deliverable-depth {
+  .step-badge-text span {
     font-size: 14px;
     font-style: italic;
-    color: var(--gold-dim);
-    border-top: 1px solid var(--rule);
-    padding-top: 14px;
-    margin-top: 4px;
-    line-height: 1.6;
+    color: var(--muted);
   }
 
-  .funnel-phase {
-    position: relative;
-    padding: 32px 28px 32px 56px;
-    border: 1px solid var(--rule);
-    border-bottom: none;
+  /* ── ACCORDION ── */
+  .accordion {
+    border: 1px solid var(--gold-rule);
+    margin-bottom: 16px;
     background: var(--smoke);
   }
 
-  .funnel-phase:last-of-type { border-bottom: 1px solid var(--rule); }
-
-  .funnel-phase::before {
-    content: '';
-    position: absolute;
-    left: 26px;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: var(--gold-dim);
+  .accordion-header {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 28px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
   }
 
-  .funnel-phase::after {
-    content: '';
-    position: absolute;
-    left: 20px;
-    top: 38px;
-    width: 13px;
-    height: 13px;
+  .accordion-header:hover {
+    background: rgba(192,154,56,0.04);
+  }
+
+  .accordion-num {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--gold-dim);
+    flex-shrink: 0;
+    margin-top: 4px;
+    width: 28px;
+  }
+
+  .accordion-title-block {
+    flex: 1;
+  }
+
+  .accordion-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .accordion-title {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--cream);
+    line-height: 1.3;
+  }
+
+  .accordion-summary {
+    font-size: 20px;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  .accordion-arrow {
+    font-size: 22px;
+    color: var(--gold-dim);
+    flex-shrink: 0;
+    transition: transform 0.3s;
+    margin-top: 2px;
+    line-height: 1;
+  }
+
+  .accordion.open .accordion-arrow {
+    transform: rotate(180deg);
+  }
+
+  .accordion.open {
+    border-color: var(--gold-dim);
+  }
+
+  .accordion-body {
+    display: none;
+    padding: 0 28px 28px 76px;
+    border-top: 1px solid var(--gold-rule);
+  }
+
+  .accordion.open .accordion-body {
+    display: block;
+  }
+
+  .accordion-body p {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 16px;
+  }
+
+  .depth-note {
+    font-size: 20px;
+    font-style: italic;
+    color: var(--gold-dim);
+    border-top: 1px solid var(--gold-rule);
+    padding-top: 14px;
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+
+  /* ── FUNNEL SPINE ── */
+  .funnel-item {
+    display: flex;
+    gap: 0;
+    position: relative;
+  }
+
+  .funnel-spine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 48px;
+  }
+
+  .funnel-dot {
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     background: var(--gold);
     border: 2px solid var(--ink);
+    flex-shrink: 0;
+    margin-top: 6px;
+    z-index: 1;
   }
 
-  .phase-label {
+  .funnel-line {
+    width: 1px;
+    flex: 1;
+    background: var(--gold-dim);
+    min-height: 20px;
+  }
+
+  .funnel-item:last-child .funnel-line { display: none; }
+
+  .funnel-content {
+    flex: 1;
+    background: var(--smoke);
+    border: 1px solid var(--gold-rule);
+    padding: 26px 24px;
+    margin-bottom: 2px;
+  }
+
+  .funnel-phase-label {
     font-family: 'Cinzel', serif;
-    font-size: 9px;
-    letter-spacing: 0.22em;
+    font-size: 12px;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 6px;
     display: block;
   }
 
-  .phase-title {
+  .funnel-phase-title {
     font-family: 'Cinzel', serif;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     color: var(--cream);
     margin-bottom: 10px;
     letter-spacing: 0.05em;
   }
 
-  .funnel-phase p {
-    font-size: 16px;
+  .funnel-content p {
+    font-size: 20px;
     color: var(--muted);
     margin: 0;
     line-height: 1.7;
   }
 
+  /* ── FRAMEWORK BOX ── */
   .framework-box {
     border: 1px solid var(--gold-dim);
     padding: 36px 28px;
     text-align: center;
-    margin: 40px 0;
-    background: rgba(184,151,46,0.04);
+    margin: 0 0 40px;
+    background: rgba(192,154,56,0.04);
   }
 
   .framework-label {
     font-family: 'Cinzel', serif;
-    font-size: 9px;
-    letter-spacing: 0.22em;
+    font-size: 12px;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
     color: var(--gold-dim);
-    margin-bottom: 16px;
     display: block;
+    margin-bottom: 14px;
   }
 
-  .framework-title {
+  .framework-name {
     font-family: 'Cinzel', serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: var(--cream);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .framework-sub {
-    font-size: 17px;
+    font-size: 18px;
     font-style: italic;
     font-weight: 300;
     color: var(--muted);
   }
 
+  /* ── GRAPH PREVIEW ── */
+  .graph-preview {
+    background: var(--smoke);
+    border: 1px solid var(--gold-rule);
+    padding: 28px 24px;
+    margin: 32px 0;
+  }
+
+  .graph-label {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  /* Bar chart */
+  .bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 120px;
+    margin-bottom: 12px;
+  }
+
+  .bar-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+    justify-content: flex-end;
+  }
+
+  .bar {
+    width: 100%;
+    background: var(--gold-dim);
+    border-radius: 2px 2px 0 0;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .bar.highlight { background: var(--gold); }
+
+  .bar-val {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .bar-name {
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .graph-note {
+    font-size: 20px;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  /* Roadmap phases */
+  .phase-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .phase-block {
+    flex: 1;
+    padding: 10px 8px;
+    text-align: center;
+    background: rgba(192,154,56,0.08);
+    border: 1px solid var(--gold-rule);
+  }
+
+  .phase-block.active {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+  }
+
+  .phase-block-label {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .phase-block-val {
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gold-light);
+  }
+
+  /* ── WEBSITE FUNNEL SECTION ── */
+  .site-example {
+    border: 1px solid var(--gold-rule);
+    background: var(--smoke);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .site-example-header {
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .site-example-name {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.06em;
+  }
+
+  .site-example-type {
+    font-size: 20px;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  .site-link-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+    padding: 10px 18px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .site-link-btn:hover {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  .site-funnel-steps {
+    border-top: 1px solid var(--gold-rule);
+    padding: 20px 24px;
+  }
+
+  .funnel-step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(192,154,56,0.1);
+  }
+
+  .funnel-step-row:last-child { border-bottom: none; }
+
+  .funnel-step-num {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+    width: 24px;
+    margin-top: 2px;
+  }
+
+  .funnel-step-name {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    width: 100px;
+    margin-top: 2px;
+  }
+
+  .funnel-step-desc {
+    font-size: 20px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .coming-soon-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    border: 1px solid var(--gold-dim);
+    padding: 3px 10px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  /* ── SUMMARY GRID ── */
   .summary-grid {
     display: flex;
     flex-direction: column;
     gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
+    background: var(--gold-rule);
+    border: 1px solid var(--gold-rule);
     margin-top: 40px;
   }
 
   .summary-row {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
-    padding: 20px 24px;
+    gap: 18px;
+    padding: 22px 24px;
     background: var(--smoke);
   }
 
   .summary-icon {
+    color: var(--gold);
     font-size: 16px;
     flex-shrink: 0;
     margin-top: 3px;
-    width: 24px;
+    width: 22px;
     text-align: center;
-    color: var(--gold);
   }
 
   .summary-text {
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 18px;
+    font-weight: 300;
     color: var(--cream-dim);
     line-height: 1.6;
   }
 
   .summary-text strong {
-    color: var(--cream);
-    font-weight: 500;
-    display: block;
     font-family: 'Cinzel', serif;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 600;
     letter-spacing: 0.1em;
-    margin-bottom: 4px;
     text-transform: uppercase;
+    color: var(--cream);
+    display: block;
+    margin-bottom: 4px;
   }
 
+  /* ── CTA ── */
   .cta-section {
     text-align: center;
     padding: 80px 0 100px;
+    border-top: 1px solid var(--gold-rule);
   }
 
   .cta-section p {
-    margin: 0 auto 36px;
-    max-width: 480px;
-    font-size: 19px;
+    max-width: 500px;
+    margin: 0 auto 40px;
+    font-size: 21px;
+    color: var(--cream-dim);
   }
 
   .cta-btn {
     display: inline-block;
     font-family: 'Cinzel', serif;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--ink);
     background: var(--gold);
-    padding: 18px 40px;
+    padding: 22px 48px;
     text-decoration: none;
     transition: background 0.2s;
   }
@@ -427,245 +751,769 @@
 
   .cta-note {
     display: block;
-    font-size: 13px;
+    font-size: 20px;
     font-style: italic;
     color: var(--muted);
-    margin-top: 20px;
+    margin-top: 22px;
   }
 
+  /* ── FOOTER ── */
   .footer {
-    border-top: 1px solid var(--rule);
-    padding: 40px 0;
+    border-top: 1px solid var(--gold-rule);
+    padding: 44px 0;
     text-align: center;
   }
 
   .footer-brand {
     font-family: 'Cinzel', serif;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     color: var(--gold-dim);
     margin-bottom: 10px;
   }
 
   .footer-note {
-    font-size: 13px;
+    font-size: 20px;
     color: var(--muted);
     font-style: italic;
   }
 
-  .inline-rule {
+  /* ── INLINE RULE ── */
+  .rule {
     width: 48px;
     height: 1px;
     background: var(--gold-dim);
-    margin: 40px 0;
+    margin: 44px 0;
   }
 </style>
 </head>
 <body>
 
-<section class="hero">
-  <div class="container">
+<!-- ═══════════════════════════════════ HERO -->
+<section class="section hero">
+  <div class="wrap">
     <div class="hero-rule"></div>
-    <div class="brand-line">JRZ Consulting Solutions</div>
+    <div class="brand-mark">JRZ Consulting Solutions</div>
     <h1>The Marketing<br><em>Vault</em></h1>
-    <p class="hero-sub">A complete strategic marketing infrastructure — built for your business, deployed in 30 days.</p>
-    <div class="hero-divider"><span>What's Inside</span></div>
+    <p class="hero-sub">The foundation every intentional marketing decision is built on — before a dollar is spent, before a word is written.</p>
+    <div style="margin-top:28px;">
+      <a href="/jrzmarketingvault/espanol/index.html" style="font-family:'Cinzel',serif; font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-dim); border:1px solid var(--gold-dim); padding:10px 22px; text-decoration:none; transition:color 0.2s, border-color 0.2s;">🌐 &nbsp;Español</a>
+    </div>
+    <div class="divider-label"><span>What You're Getting</span></div>
   </div>
 </section>
 
-<section>
-  <div class="container">
-    <span class="eyebrow">The Premise</span>
-    <p class="intro-statement">Most businesses don't have a marketing problem. They have an <strong>architecture problem.</strong></p>
-    <p>You have a product that works. You have customers who believe in it. What you don't have is a system — a documented, organized, replicable infrastructure that turns every conversation, every lead, and every relationship into compounding revenue.</p>
-    <p>The Marketing Vault is that infrastructure. Not a PDF. Not a template. A living, custom-built strategic repository — every document written specifically for your business, your voice, your market, and your growth trajectory.</p>
+<!-- ═══════════════════════════════════ STEP ONE -->
+<section class="section">
+  <div class="wrap">
+    <span class="eyebrow">Before Everything Else</span>
+
+    <div class="step-badge">
+      <div class="step-badge-num">01</div>
+      <div class="step-badge-text">
+        <strong>Step One of Funnel Building</strong>
+        <span>The vault comes before the website, the ads, the content.</span>
+      </div>
+    </div>
+
+    <p class="lead">Most businesses don't have a marketing problem. They have an <strong>architecture problem.</strong></p>
+
+    <p>Energy gets spent. Posts go out. Ads run. A website gets built. But without a foundation — without a documented system that defines who you are, who you serve, and what every piece of communication is trying to do — none of it compounds. It just costs.</p>
+
+    <p>The Marketing Vault is Step One because nothing that comes after it works without it. Not the website. Not the email sequences. Not the ad spend. The vault is what makes every marketing decision intentional — and every minute spent on marketing worth it.</p>
+
     <div class="pull-quote">
-      <p>"The vault is not a deliverable. It is the operating system behind every piece of marketing your business will ever produce."</p>
+      <p>"If you can't explain why a piece of content exists, it shouldn't exist. The vault makes that clarity non-negotiable."</p>
     </div>
-    <p>Each vault is housed on a private, mobile-first web portal — organized by phase, accessible from any device, built to be referenced daily. Every document links to every other. The whole thing moves as one system.</p>
+
+    <p>Every client who receives a vault gets a private, mobile-accessible web portal — five documents, fully custom, organized by phase. Not templates. Not outlines. Built for your business from a deep-intake session forward.</p>
   </div>
 </section>
 
-<section>
-  <div class="container">
+<!-- ═══════════════════════════════════ DELIVERABLES -->
+<section class="section">
+  <div class="wrap">
     <span class="eyebrow">The Deliverables</span>
-    <h2 class="section-title">What's <em>Inside</em></h2>
-    <p class="section-lead">Five core documents. Each one built from scratch. None of them templated. Here is what each one contains and how deep it goes.</p>
+    <h2>What's <em>Inside</em></h2>
+    <p class="section-intro">Five documents. Each one visible below — tap any card to read the full breakdown of what it contains and how deep it goes.</p>
 
-    <div class="deliverable">
-      <span class="deliverable-number">01 — Foundation</span>
-      <div class="deliverable-title">Brand Consistency Document</div>
-      <span class="deliverable-tag">Single Source of Truth</span>
-      <p>The first document anyone touches before producing anything in your name. Full color palette with hex codes, typography system, logo usage rules for every context, photography direction, channel-specific rules, and the pre-publish checklist that keeps every output consistent — whether you wrote it, your team wrote it, or an AI wrote it.</p>
-      <p>At the center of this document is your voice profile — distilled from how you actually speak. Not a generic description. Your language patterns, written out in black and white, with correct and incorrect examples side by side for every channel.</p>
-      <div class="deliverable-depth">Depth: 8–12 sections · Voice examples per channel · Visual identity spec · Pre-publish checklist · Logo usage rules</div>
+    <!-- 01 -->
+    <div class="accordion open" id="acc1">
+      <button class="accordion-header" onclick="toggle('acc1')">
+        <span class="accordion-num">01</span>
+        <div class="accordion-title-block">
+          <span class="accordion-tag">Foundation</span>
+          <div class="accordion-title">Brand Consistency Document</div>
+          <div class="accordion-summary">Single source of truth — identity, voice, rules, and pre-publish checklist.</div>
+        </div>
+        <span class="accordion-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p>The first document anyone touches before producing anything in your name. Full color palette with hex codes. Typography system with usage rules for every size and weight. Logo application guidelines for every context — print, digital, dark backgrounds, small-format. Photography direction so every image feels like it came from the same world.</p>
+        <p>At the center is your voice profile — distilled from how you actually speak. Not a generic "professional but approachable" description. Your specific language patterns, written out with correct and incorrect examples side by side for every channel. Anyone producing content in your name — contractors, VA's, AI tools — operates from this standard.</p>
+
+        <!-- COLOR SCHEME EXAMPLE -->
+        <div style="margin: 28px 0; border: 1px solid var(--gold-rule); background: #141210; padding: 28px 24px;">
+          <span style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-dim); display:block; margin-bottom:22px;">Example — Brand Color Palette</span>
+
+          <!-- Swatch row -->
+          <div style="display:flex; flex-direction:column; gap:10px;">
+
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div style="width:52px; height:52px; background:#0e0c0a; border:1px solid var(--gold-rule); flex-shrink:0;"></div>
+              <div>
+                <div style="font-family:'Cinzel',serif; font-size:14px; font-weight:600; color:var(--cream); letter-spacing:0.06em;">Vault Ink</div>
+                <div style="font-size:20px; color:var(--muted); margin-top:2px;">#0E0C0A &nbsp;·&nbsp; Primary Background</div>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div style="width:52px; height:52px; background:#c09a38; flex-shrink:0;"></div>
+              <div>
+                <div style="font-family:'Cinzel',serif; font-size:14px; font-weight:600; color:var(--cream); letter-spacing:0.06em;">Gold</div>
+                <div style="font-size:20px; color:var(--muted); margin-top:2px;">#C09A38 &nbsp;·&nbsp; Primary Accent · CTAs · Headings</div>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div style="width:52px; height:52px; background:#d9b85a; flex-shrink:0;"></div>
+              <div>
+                <div style="font-family:'Cinzel',serif; font-size:14px; font-weight:600; color:var(--cream); letter-spacing:0.06em;">Gold Light</div>
+                <div style="font-size:20px; color:var(--muted); margin-top:2px;">#D9B85A &nbsp;·&nbsp; Italic Emphasis · Pull Quotes</div>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div style="width:52px; height:52px; background:#f5f0e8; flex-shrink:0;"></div>
+              <div>
+                <div style="font-family:'Cinzel',serif; font-size:14px; font-weight:600; color:var(--cream); letter-spacing:0.06em;">Cream</div>
+                <div style="font-size:20px; color:var(--muted); margin-top:2px;">#F5F0E8 &nbsp;·&nbsp; Primary Text · Headlines</div>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div style="width:52px; height:52px; background:#1c1914; border:1px solid var(--gold-rule); flex-shrink:0;"></div>
+              <div>
+                <div style="font-family:'Cinzel',serif; font-size:14px; font-weight:600; color:var(--cream); letter-spacing:0.06em;">Smoke</div>
+                <div style="font-size:20px; color:var(--muted); margin-top:2px;">#1C1914 &nbsp;·&nbsp; Card & Section Backgrounds</div>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div style="width:52px; height:52px; background:#7a6e5f; flex-shrink:0;"></div>
+              <div>
+                <div style="font-family:'Cinzel',serif; font-size:14px; font-weight:600; color:var(--cream); letter-spacing:0.06em;">Muted</div>
+                <div style="font-size:20px; color:var(--muted); margin-top:2px;">#7A6E5F &nbsp;·&nbsp; Supporting Text · Captions</div>
+              </div>
+            </div>
+
+          </div>
+          <div style="font-size:20px; font-style:italic; color:var(--gold-dim); margin-top:20px; padding-top:16px; border-top:1px solid var(--gold-rule);">Your vault's palette is built to match your business — industry, audience, and the emotion you want customers to feel.</div>
+        </div>
+
+        <div class="depth-note">Depth: 8–12 sections · Voice examples per channel · Visual identity spec · Logo usage rules · Pre-publish checklist</div>
+      </div>
     </div>
 
-    <div class="deliverable">
-      <span class="deliverable-number">02 — Audience</span>
-      <div class="deliverable-title">Ideal Client Profile</div>
-      <span class="deliverable-tag">Market Intelligence</span>
-      <p>Not a demographic description. A psychographic portrait of the person most likely to say yes, pay on time, and refer three more clients. This document maps the emotional context your ideal client is in when they start searching — what they're afraid of, what they've already tried, and what finally makes them pull the trigger.</p>
-      <p>Covers two to three distinct client segments, each with their own emotional arc, decision triggers, and objection set. Written in the language your ideal client uses to describe themselves — because that language is what converts in copy, in ads, and in every conversation.</p>
-      <div class="deliverable-depth">Depth: 2–3 client segments · Emotional context mapping · Search intent analysis · Objection inventory · Decision trigger profile</div>
+    <!-- 02 -->
+    <div class="accordion" id="acc2">
+      <button class="accordion-header" onclick="toggle('acc2')">
+        <span class="accordion-num">02</span>
+        <div class="accordion-title-block">
+          <span class="accordion-tag">Audience</span>
+          <div class="accordion-title">Ideal Client Profile</div>
+          <div class="accordion-summary">A psychographic portrait of the person most likely to buy, rebook, and refer.</div>
+        </div>
+        <span class="accordion-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p>Not a demographic description. A deep portrait of the specific person most likely to say yes, pay on time, and send three more clients your way. This document maps the emotional context your ideal client is in when they start searching — what they're afraid of, what they've already tried, what they secretly want to hear, and what finally makes them pull the trigger.</p>
+        <p>Covers two to three distinct client segments, each with their own emotional arc, decision triggers, and objection set. Written in the language your ideal client uses to describe themselves — because that's the language that converts in copy, in ads, and in every sales conversation.</p>
+
+        <!-- ICP VISUAL — Business Owner looking at this vault -->
+        <div style="margin:28px 0; background:#141210; border:1px solid var(--gold-rule); padding:28px 24px;">
+          <span style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-dim); display:block; margin-bottom:6px;">Example — Ideal Client Profile</span>
+          <div style="font-family:'Cinzel',serif; font-size:20px; font-weight:600; color:var(--cream); margin-bottom:4px;">The Business Owner Considering This Vault</div>
+          <div style="font-size:20px; font-style:italic; color:var(--muted); margin-bottom:24px;">Small to mid-size business · $150K–$1M revenue · Has tried marketing before</div>
+
+          <!-- Four quadrants stacked -->
+          <div style="display:flex; flex-direction:column; gap:12px;">
+
+            <!-- Fears -->
+            <div style="background:rgba(192,154,56,0.05); border-left:3px solid #8a3a2a; padding:18px 20px;">
+              <div style="font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#c4583e; margin-bottom:12px;">What They're Afraid Of</div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <div style="font-size:20px; color:var(--cream-dim);">· Spending money on marketing that doesn't work — again</div>
+                <div style="font-size:20px; color:var(--cream-dim);">· Looking unprofessional or inconsistent to potential clients</div>
+                <div style="font-size:20px; color:var(--cream-dim);">· Not knowing what's actually working or why</div>
+                <div style="font-size:20px; color:var(--cream-dim);">· A competitor catching up while they're still figuring it out</div>
+                <div style="font-size:20px; color:var(--cream-dim);">· Handing their brand to someone who doesn't understand it</div>
+              </div>
+            </div>
+
+            <!-- The phrases they use -->
+            <div style="background:rgba(192,154,56,0.05); border-left:3px solid var(--gold-dim); padding:18px 20px;">
+              <div style="font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">Words That Come Out of Their Mouth</div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <div style="font-size:20px; color:var(--cream-dim); font-style:italic;">"I know I need to do something with my marketing, I just don't know where to start."</div>
+                <div style="font-size:20px; color:var(--cream-dim); font-style:italic;">"We've tried posting but nothing seems to stick."</div>
+                <div style="font-size:20px; color:var(--cream-dim); font-style:italic;">"I feel like we look scattered — like there's no brand."</div>
+                <div style="font-size:20px; color:var(--cream-dim); font-style:italic;">"I just need someone to tell me what to actually do."</div>
+                <div style="font-size:20px; color:var(--cream-dim); font-style:italic;">"I want to grow but I don't want to spend a fortune to find out it didn't work."</div>
+              </div>
+            </div>
+
+            <!-- Psychology -->
+            <div style="background:rgba(192,154,56,0.05); border-left:3px solid #4a7a5a; padding:18px 20px;">
+              <div style="font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#6ab887; margin-bottom:12px;">What's Happening Psychologically</div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <div style="font-size:20px; color:var(--cream-dim);">· They've been burned before — trust is earned, not assumed</div>
+                <div style="font-size:20px; color:var(--cream-dim);">· They're capable and proud — they don't want to feel sold to</div>
+                <div style="font-size:20px; color:var(--cream-dim);">· They're overwhelmed, not incompetent — they need clarity, not criticism</div>
+                <div style="font-size:20px; color:var(--cream-dim);">· They respect systems — show the process and they relax</div>
+                <div style="font-size:20px; color:var(--cream-dim);">· They want proof before commitment — examples close this sale</div>
+              </div>
+            </div>
+
+            <!-- Decision triggers -->
+            <div style="background:rgba(192,154,56,0.05); border-left:3px solid var(--gold); padding:18px 20px;">
+              <div style="font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-light); margin-bottom:12px;">What Makes Them Say Yes</div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <div style="font-size:20px; color:var(--cream-dim);">· Seeing a real example of the work — not a pitch deck</div>
+                <div style="font-size:20px; color:var(--cream-dim);">· A clear deliverable list with no ambiguity about what they're getting</div>
+                <div style="font-size:20px; color:var(--cream-dim);">· The process explained in plain language, step by step</div>
+                <div style="font-size:20px; color:var(--cream-dim);">· Someone who understands their industry without being asked</div>
+                <div style="font-size:20px; color:var(--cream-dim);">· Low-friction first step — a conversation, not a contract</div>
+              </div>
+            </div>
+
+          </div>
+          <div style="font-size:20px; font-style:italic; color:var(--gold-dim); margin-top:20px; padding-top:16px; border-top:1px solid var(--gold-rule);">Your ICP is built the same way — from real language, real fears, real triggers — for your specific buyer.</div>
+        </div>
+
+        <div class="depth-note">Depth: 2–3 segments · Emotional context mapping · Search intent analysis · Objection inventory · Decision trigger profile</div>
+      </div>
     </div>
 
-    <div class="deliverable">
-      <span class="deliverable-number">03 — Copy</span>
-      <div class="deliverable-title">Brand Tone & Copy Framework</div>
-      <span class="deliverable-tag">Voice System</span>
-      <p>The system that keeps every output sounding like it came from one person — even when it didn't. Four voice axes define your tone. Writing rules for email, social, and web. Side-by-side correct and incorrect examples for every channel.</p>
-      <p>This is the document that eliminates the feeling that your Instagram captions, email sequences, and website homepage were written by three different people. Once built, anyone producing content in your name — contractors, VAs, AI tools — operates from a single standard.</p>
-      <div class="deliverable-depth">Depth: Four-axis tone model · Channel-specific rules · Correct/incorrect examples · Subject line guidelines · CTA language bank</div>
+    <!-- 03 -->
+    <div class="accordion" id="acc3">
+      <button class="accordion-header" onclick="toggle('acc3')">
+        <span class="accordion-num">03</span>
+        <div class="accordion-title-block">
+          <span class="accordion-tag">Copy</span>
+          <div class="accordion-title">Brand Tone & Copy Framework</div>
+          <div class="accordion-summary">The system that keeps every output sounding like one person wrote it.</div>
+        </div>
+        <span class="accordion-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p>The document that eliminates the feeling that your social media posts, your email sequences, and your website homepage were written by three different people. Four voice axes define your tone. Writing rules for email, social media, and web. Side-by-side correct and incorrect examples for every channel.</p>
+        <p>Once this is built, anyone producing content in your name operates from a single standard. The voice is portable — it moves across AI tools, freelancers, and platforms without diluting what makes your brand recognizable.</p>
+
+        <!-- SOCIAL MEDIA SIDE BY SIDE -->
+        <div style="margin:28px 0; background:#141210; border:1px solid var(--gold-rule); padding:28px 24px;">
+          <span style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-dim); display:block; margin-bottom:20px;">Example — Social Media Post · On-Brand vs Off-Brand</span>
+
+          <div style="display:flex; flex-direction:column; gap:12px;">
+
+            <!-- OFF BRAND -->
+            <div style="border:1px solid #6b2222; background:rgba(107,34,34,0.12); padding:20px;">
+              <div style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#c45555; margin-bottom:12px;">✗ &nbsp;Off-Brand</div>
+              <div style="font-size:20px; color:var(--cream-dim); line-height:1.7; font-style:italic;">"🚀 Exciting news!! We're thrilled to announce our AMAZING new marketing packages designed to SKYROCKET your business growth!! Don't miss out — limited spots available! Book NOW before they're gone!! 🔥🔥"</div>
+              <div style="margin-top:14px; padding-top:12px; border-top:1px solid rgba(107,34,34,0.4);">
+                <div style="font-size:20px; color:#c45555;">Why it fails: Generic urgency. Emojis as substitutes for substance. Could be any business, anywhere. The reader feels sold to — not spoken to.</div>
+              </div>
+            </div>
+
+            <!-- ON BRAND -->
+            <div style="border:1px solid #2a5a3a; background:rgba(42,90,58,0.12); padding:20px;">
+              <div style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#6ab887; margin-bottom:12px;">✓ &nbsp;On-Brand</div>
+              <div style="font-size:20px; color:var(--cream-dim); line-height:1.7; font-style:italic;">"Most businesses have a marketing problem. We've found it's actually an architecture problem — scattered energy, no system, no way to know what's working. The vault fixes the architecture. Everything else gets easier from there. If that sounds familiar, let's talk."</div>
+              <div style="margin-top:14px; padding-top:12px; border-top:1px solid rgba(42,90,58,0.4);">
+                <div style="font-size:20px; color:#6ab887;">Why it works: Speaks to the reader's actual experience. No pressure. One clear idea. Sounds like a person who knows their work — not a brand that wants your money.</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Platform row -->
+          <div style="margin-top:20px; padding-top:18px; border-top:1px solid var(--gold-rule);">
+            <div style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-dim); margin-bottom:12px;">The same rules — applied across every platform</div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span style="font-size:20px; color:var(--cream-dim); border:1px solid var(--gold-rule); padding:6px 14px;">Instagram</span>
+              <span style="font-size:20px; color:var(--cream-dim); border:1px solid var(--gold-rule); padding:6px 14px;">Facebook</span>
+              <span style="font-size:20px; color:var(--cream-dim); border:1px solid var(--gold-rule); padding:6px 14px;">LinkedIn</span>
+              <span style="font-size:20px; color:var(--cream-dim); border:1px solid var(--gold-rule); padding:6px 14px;">Google Business</span>
+              <span style="font-size:20px; color:var(--cream-dim); border:1px solid var(--gold-rule); padding:6px 14px;">Email</span>
+              <span style="font-size:20px; color:var(--cream-dim); border:1px solid var(--gold-rule); padding:6px 14px;">SMS</span>
+            </div>
+          </div>
+          <div style="font-size:20px; font-style:italic; color:var(--gold-dim); margin-top:16px; padding-top:16px; border-top:1px solid var(--gold-rule);">Your copy framework is written for your voice — not a generic brand standard.</div>
+        </div>
+
+        <div class="depth-note">Depth: Four-axis tone model · Channel rules · Correct/incorrect examples · Subject line guidelines · CTA language bank</div>
+      </div>
     </div>
 
-    <div class="deliverable">
-      <span class="deliverable-number">04 — Execution</span>
-      <div class="deliverable-title">Email Cadence — Live Sequences</div>
-      <span class="deliverable-tag">Revenue Infrastructure</span>
-      <p>This is where strategy becomes money. Typically four sequences, eight to twelve emails total — written, sequenced, and ready to load into your email platform. Not outlines. Full email copy with subject lines, preview text, and send timing for each.</p>
-      <p>Standard sequences: new inquiry follow-up, dormant lead reactivation, post-service upsell, and repeat customer / referral prompt. Every sequence is built around your customer's actual emotional state at that moment in the journey — not generic "just checking in" language.</p>
-      <div class="deliverable-depth">Depth: 4 sequences · 8–12 full emails · Subject lines + preview text + timing · Platform setup instructions · List segmentation guide</div>
+    <!-- 04 -->
+    <div class="accordion" id="acc4">
+      <button class="accordion-header" onclick="toggle('acc4')">
+        <span class="accordion-num">04</span>
+        <div class="accordion-title-block">
+          <span class="accordion-tag">Execution</span>
+          <div class="accordion-title">Email Cadence — Live Sequences</div>
+          <div class="accordion-summary">8–12 full emails, written to send — not outlines, not templates.</div>
+        </div>
+        <span class="accordion-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p>This is where strategy becomes money. Typically four sequences, eight to twelve emails total — written, sequenced, and ready to load into your email platform. Subject lines. Preview text. Send timing. Platform setup instructions. Full copy that's ready to go on day one.</p>
+        <p>Standard sequences: new inquiry follow-up, dormant lead reactivation, post-service upsell, and repeat customer / referral prompt. Every sequence is built around your customer's actual emotional state at that moment in the journey — not generic "just checking in" language.</p>
+
+        <!-- EMAIL CADENCE LOGIC FLOW -->
+        <div style="margin:28px 0; background:#141210; border:1px solid var(--gold-rule); padding:28px 24px;">
+          <span style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-dim); display:block; margin-bottom:24px;">Example — Email Cadence Logic Flow</span>
+
+          <!-- TRIGGER -->
+          <div style="text-align:center; margin-bottom:8px;">
+            <div style="display:inline-block; background:var(--gold); padding:10px 24px;">
+              <span style="font-family:'Cinzel',serif; font-size:14px; font-weight:700; color:var(--ink); letter-spacing:0.1em;">NEW INQUIRY RECEIVED</span>
+            </div>
+          </div>
+          <div style="text-align:center; font-size:22px; color:var(--gold-dim); margin-bottom:8px;">↓</div>
+
+          <!-- EMAIL 1 -->
+          <div style="background:rgba(192,154,56,0.08); border:1px solid var(--gold-dim); padding:14px 18px; margin-bottom:4px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div>
+                <span style="font-family:'Cinzel',serif; font-size:12px; color:var(--gold); letter-spacing:0.14em; text-transform:uppercase;">Email 1</span>
+                <div style="font-size:20px; color:var(--cream); margin-top:3px;">Immediate response — confirm receipt, set expectations, build warmth</div>
+              </div>
+              <span style="font-size:20px; color:var(--muted); white-space:nowrap;">Day 0</span>
+            </div>
+          </div>
+          <div style="text-align:center; font-size:22px; color:var(--gold-dim); margin:4px 0;">↓</div>
+
+          <!-- EMAIL 2 -->
+          <div style="background:rgba(192,154,56,0.08); border:1px solid var(--gold-dim); padding:14px 18px; margin-bottom:4px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div>
+                <span style="font-family:'Cinzel',serif; font-size:12px; color:var(--gold); letter-spacing:0.14em; text-transform:uppercase;">Email 2</span>
+                <div style="font-size:20px; color:var(--cream); margin-top:3px;">Value touch — share a relevant example, reduce risk, build credibility</div>
+              </div>
+              <span style="font-size:20px; color:var(--muted); white-space:nowrap;">Day 2</span>
+            </div>
+          </div>
+          <div style="text-align:center; font-size:22px; color:var(--gold-dim); margin:4px 0;">↓</div>
+
+          <!-- BRANCH POINT -->
+          <div style="background:#1a1410; border:1px solid var(--gold-rule); padding:14px 18px; margin-bottom:4px; text-align:center;">
+            <span style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-dim);">Did they respond?</span>
+          </div>
+
+          <!-- YES / NO branch -->
+          <div style="display:flex; gap:8px; margin-bottom:4px;">
+            <div style="flex:1; background:rgba(42,90,58,0.15); border:1px solid #2a5a3a; padding:12px 14px; text-align:center;">
+              <div style="font-family:'Cinzel',serif; font-size:12px; color:#6ab887; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:6px;">Yes →</div>
+              <div style="font-size:20px; color:var(--cream-dim);">Move to booking sequence</div>
+            </div>
+            <div style="flex:1; background:rgba(107,34,34,0.12); border:1px solid #6b2222; padding:12px 14px; text-align:center;">
+              <div style="font-family:'Cinzel',serif; font-size:12px; color:#c45555; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:6px;">No →</div>
+              <div style="font-size:20px; color:var(--cream-dim);">Reactivation sequence begins</div>
+            </div>
+          </div>
+          <div style="text-align:center; font-size:22px; color:var(--gold-dim); margin:4px 0;">↓</div>
+
+          <!-- EMAIL 3 -->
+          <div style="background:rgba(192,154,56,0.08); border:1px solid var(--gold-dim); padding:14px 18px; margin-bottom:4px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div>
+                <span style="font-family:'Cinzel',serif; font-size:12px; color:var(--gold); letter-spacing:0.14em; text-transform:uppercase;">Email 3</span>
+                <div style="font-size:20px; color:var(--cream); margin-top:3px;">Soft follow-up — low pressure, direct offer to continue the conversation</div>
+              </div>
+              <span style="font-size:20px; color:var(--muted); white-space:nowrap;">Day 7</span>
+            </div>
+          </div>
+          <div style="text-align:center; font-size:22px; color:var(--gold-dim); margin:4px 0;">↓</div>
+
+          <!-- EMAIL 4 -->
+          <div style="background:rgba(192,154,56,0.08); border:1px solid var(--gold-dim); padding:14px 18px; margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div>
+                <span style="font-family:'Cinzel',serif; font-size:12px; color:var(--gold); letter-spacing:0.14em; text-transform:uppercase;">Email 4</span>
+                <div style="font-size:20px; color:var(--cream); margin-top:3px;">Final touch — close the loop, leave the door open, protect the relationship</div>
+              </div>
+              <span style="font-size:20px; color:var(--muted); white-space:nowrap;">Day 14</span>
+            </div>
+          </div>
+
+          <!-- 4 sequence labels -->
+          <div style="padding-top:16px; border-top:1px solid var(--gold-rule);">
+            <div style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-dim); margin-bottom:12px;">All Four Sequences in Your Vault</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <span style="font-family:'Cinzel',serif; font-size:12px; color:var(--gold); width:24px;">01</span>
+                <span style="font-size:20px; color:var(--cream-dim);">New Inquiry Follow-Up</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px;">
+                <span style="font-family:'Cinzel',serif; font-size:12px; color:var(--gold); width:24px;">02</span>
+                <span style="font-size:20px; color:var(--cream-dim);">Dormant Lead Reactivation</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px;">
+                <span style="font-family:'Cinzel',serif; font-size:12px; color:var(--gold); width:24px;">03</span>
+                <span style="font-size:20px; color:var(--cream-dim);">Post-Service Upsell</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px;">
+                <span style="font-family:'Cinzel',serif; font-size:12px; color:var(--gold); width:24px;">04</span>
+                <span style="font-size:20px; color:var(--cream-dim);">Repeat Customer & Referral Prompt</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="font-size:20px; font-style:italic; color:var(--gold-dim); margin-top:20px; padding-top:16px; border-top:1px solid var(--gold-rule);">Every email in your vault is written to send — subject line, preview text, copy, and timing included.</div>
+        </div>
+
+        <div class="depth-note">Depth: 4 sequences · 8–12 full emails · Subject lines + preview text + timing · Platform setup instructions · List segmentation guide</div>
+      </div>
     </div>
 
-    <div class="deliverable">
-      <span class="deliverable-number">05 — Strategy</span>
-      <div class="deliverable-title">Growth Roadmap</div>
-      <span class="deliverable-tag">90-Day Execution Plan</span>
-      <p>The diagnostic and the prescription in one document. Where your revenue is currently leaking, what each gap is worth mathematically, and the 90-day sequenced plan to close them — built around your specific business model, not a generic framework.</p>
-      <p>Every projection is anchored to industry benchmarks and your own numbers. The roadmap shows what to do, why, in what order, and what the math looks like at each phase — structured around Build → Optimize → Activate: 30 days of infrastructure, 30 of deployment, 30 of compounding.</p>
-      <div class="deliverable-depth">Depth: Revenue gap audit · Line-item projections with math · 90-day phased timeline · Tool stack and budget breakdown · Monthly KPI dashboard</div>
+    <!-- 05 -->
+    <div class="accordion" id="acc5">
+      <button class="accordion-header" onclick="toggle('acc5')">
+        <span class="accordion-num">05</span>
+        <div class="accordion-title-block">
+          <span class="accordion-tag">Strategy</span>
+          <div class="accordion-title">Growth Roadmap</div>
+          <div class="accordion-summary">90-day plan — where revenue is leaking, what each gap is worth, and how to close it.</div>
+        </div>
+        <span class="accordion-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p>The diagnostic and the prescription in one document. Where your revenue is currently escaping, what each gap is worth mathematically, and the 90-day sequenced plan to close them — built around your specific business model, not a generic framework.</p>
+        <p>Every projection is anchored to industry benchmarks and your own numbers. The roadmap shows what to do, why, in what order, and what the math looks like at each phase — structured around Build → Optimize → Activate: 30 days of infrastructure, 30 of deployment, 30 of compounding.</p>
+
+        <!-- Graph preview -->
+        <div class="graph-preview">
+          <span class="graph-label">Example — Revenue Gap Analysis</span>
+          <div class="bar-chart">
+            <div class="bar-wrap">
+              <span class="bar-val">$500K</span>
+              <div class="bar" style="height:50%"></div>
+              <span class="bar-name">Current</span>
+            </div>
+            <div class="bar-wrap">
+              <span class="bar-val">+$90K</span>
+              <div class="bar highlight" style="height:18%"></div>
+              <span class="bar-name">List Reactivation</span>
+            </div>
+            <div class="bar-wrap">
+              <span class="bar-val">+$60K</span>
+              <div class="bar highlight" style="height:12%"></div>
+              <span class="bar-name">Repeat Clients</span>
+            </div>
+            <div class="bar-wrap">
+              <span class="bar-val">+$60K</span>
+              <div class="bar highlight" style="height:12%"></div>
+              <span class="bar-name">Referral Network</span>
+            </div>
+            <div class="bar-wrap">
+              <span class="bar-val">+$45K</span>
+              <div class="bar highlight" style="height:9%"></div>
+              <span class="bar-name">Off-Season</span>
+            </div>
+            <div class="bar-wrap">
+              <span class="bar-val">$755K+</span>
+              <div class="bar" style="height:75%;background:var(--gold-light)"></div>
+              <span class="bar-name">Projected</span>
+            </div>
+          </div>
+          <p class="graph-note">Illustrative example — your roadmap is built from your actual numbers.</p>
+        </div>
+
+        <!-- Phase roadmap -->
+        <div class="graph-preview" style="margin-top:0">
+          <span class="graph-label">Example — 90-Day Phase Timeline</span>
+          <div class="phase-row">
+            <div class="phase-block active">
+              <span class="phase-block-label">Days 1–30</span>
+              <span class="phase-block-val">BUILD</span>
+            </div>
+            <div class="phase-block active">
+              <span class="phase-block-label">Days 31–60</span>
+              <span class="phase-block-val">OPTIMIZE</span>
+            </div>
+            <div class="phase-block active">
+              <span class="phase-block-label">Days 61–90</span>
+              <span class="phase-block-val">ACTIVATE</span>
+            </div>
+          </div>
+          <p class="graph-note">Foundation first. Sequences second. Growth levers third.</p>
+        </div>
+
+        <div class="depth-note">Depth: Revenue gap audit · Line-item projections · 90-day timeline · Tool stack + budget breakdown · Monthly KPI dashboard</div>
+      </div>
     </div>
 
   </div>
 </section>
 
-<section>
-  <div class="container">
-    <span class="eyebrow">The Funnel</span>
-    <h2 class="section-title">How the Vault <em>Works</em></h2>
-    <p class="section-lead">The five documents are not independent. They are a sequenced architecture — each one feeds the next. This is the logic underneath the vault.</p>
+<!-- ═══════════════════════════════════ FUNNEL ROADMAP -->
+<section class="section">
+  <div class="wrap">
+    <span class="eyebrow">The Architecture</span>
+    <h2>How the Vault <em>Works</em></h2>
+    <p class="section-intro">The five documents aren't independent. Each one feeds the next. This is the logic underneath the whole system.</p>
 
     <div class="framework-box">
       <span class="framework-label">The Framework</span>
-      <div class="framework-title">BUILD → OPTIMIZE → ACTIVATE</div>
+      <div class="framework-name">BUILD → OPTIMIZE → ACTIVATE</div>
       <div class="framework-sub">From scattered effort to compounding revenue</div>
     </div>
 
-    <div class="funnel-phase">
-      <span class="phase-label">Phase 01 · Build</span>
-      <div class="phase-title">Foundation — Brand Consistency Document</div>
-      <p>Everything starts here. Before one email goes out, one caption gets written, or one ad gets placed, we establish who you are, what you sound like, and what the rules are. The Brand Consistency Document is the source of truth every other system draws from.</p>
+    <div class="funnel-item">
+      <div class="funnel-spine">
+        <div class="funnel-dot"></div>
+        <div class="funnel-line"></div>
+      </div>
+      <div class="funnel-content">
+        <span class="funnel-phase-label">Phase 01 · Build</span>
+        <div class="funnel-phase-title">Brand Consistency Document</div>
+        <p>Before anything is written, posted, or launched — we establish who you are, what you sound like, and what the rules are. This is the source of truth every other system draws from. Nothing is produced without it.</p>
+      </div>
     </div>
 
-    <div class="funnel-phase">
-      <span class="phase-label">Phase 02 · Build</span>
-      <div class="phase-title">Intelligence — Ideal Client Profile</div>
-      <p>The brand foundation tells us how to speak. The ICP tells us who we're speaking to and why. Every email sequence, every campaign, every piece of copy is written against this profile — the specific person most likely to buy, rebook, and refer.</p>
+    <div class="funnel-item">
+      <div class="funnel-spine">
+        <div class="funnel-dot"></div>
+        <div class="funnel-line"></div>
+      </div>
+      <div class="funnel-content">
+        <span class="funnel-phase-label">Phase 02 · Build</span>
+        <div class="funnel-phase-title">Ideal Client Profile</div>
+        <p>The brand foundation tells us how to speak. The ICP tells us who we're speaking to. Every email, campaign, and piece of copy is written against this profile — not a general audience, but the exact person most likely to buy, rebook, and refer.</p>
+      </div>
     </div>
 
-    <div class="funnel-phase">
-      <span class="phase-label">Phase 03 · Optimize</span>
-      <div class="phase-title">Voice — Brand Tone & Copy Framework</div>
-      <p>With brand identity and audience intelligence established, we codify the voice. This document operationalizes the first two — translating your identity and your audience's language into a replicable system for anyone producing content in your name.</p>
+    <div class="funnel-item">
+      <div class="funnel-spine">
+        <div class="funnel-dot"></div>
+        <div class="funnel-line"></div>
+      </div>
+      <div class="funnel-content">
+        <span class="funnel-phase-label">Phase 03 · Optimize</span>
+        <div class="funnel-phase-title">Brand Tone & Copy Framework</div>
+        <p>With identity and audience established, we codify the voice — translating both into a replicable system anyone can use. This is what makes the brand scalable without losing itself in the process.</p>
+      </div>
     </div>
 
-    <div class="funnel-phase">
-      <span class="phase-label">Phase 04 · Activate</span>
-      <div class="phase-title">Revenue — Email Sequences</div>
-      <p>Infrastructure is now live. The sequences deploy against your actual list — reactivating dormant contacts, following up on open inquiries, converting one-time buyers into repeat clients. This is where the architecture produces its first direct revenue.</p>
+    <div class="funnel-item">
+      <div class="funnel-spine">
+        <div class="funnel-dot"></div>
+        <div class="funnel-line"></div>
+      </div>
+      <div class="funnel-content">
+        <span class="funnel-phase-label">Phase 04 · Activate</span>
+        <div class="funnel-phase-title">Email Sequences</div>
+        <p>Infrastructure is live. The sequences deploy — reactivating dormant contacts, following up on open inquiries, converting one-time buyers into repeat clients. This is where the architecture produces its first direct revenue.</p>
+      </div>
     </div>
 
-    <div class="funnel-phase">
-      <span class="phase-label">Phase 05 · Activate</span>
-      <div class="phase-title">Compounding — Growth Roadmap</div>
-      <p>The roadmap is last because it can only be built accurately after we understand your brand, your audience, your voice, and what's already been deployed. It closes the loop: diagnosing where revenue is escaping and sequencing the plan to capture all of it.</p>
+    <div class="funnel-item">
+      <div class="funnel-spine">
+        <div class="funnel-dot"></div>
+        <div class="funnel-line"></div>
+      </div>
+      <div class="funnel-content">
+        <span class="funnel-phase-label">Phase 05 · Activate</span>
+        <div class="funnel-phase-title">Growth Roadmap</div>
+        <p>The roadmap closes the loop. Built last because it can only be accurate after we understand your brand, your audience, your voice, and what's been deployed — it maps every remaining revenue gap and sequences the plan to close all of it.</p>
+      </div>
     </div>
 
-    <div class="inline-rule" style="margin-top:44px;"></div>
-    <p>The vault doesn't stop at delivery. Every document is designed to be referenced, updated, and built on top of. As your business grows, the vault grows with it.</p>
   </div>
 </section>
 
-<section>
-  <div class="container">
-    <span class="eyebrow">The Standard</span>
-    <h2 class="section-title">How <em>Deep</em> It Goes</h2>
-    <p class="section-lead">This is not a deliverable you receive and file away. Here is what the depth actually looks like in practice.</p>
+<!-- ═══════════════════════════════════ WEBSITE ADD-ON -->
+<section class="section">
+  <div class="wrap">
+    <span class="eyebrow">Optional Add-On</span>
+    <h2>Website Funnel <em>Build</em></h2>
+    <p class="section-intro">A website can be added to any vault engagement. Not a brochure site — a conversion funnel. Every section has a job. Every word comes from the vault documents built before it.</p>
 
-    <p>Every vault begins with a deep-intake session — 60 to 90 minutes of structured conversation about your business, your customer, your history, and your goals. That session is the raw material. Nothing in the vault is assumed, generalized, or pulled from a template.</p>
-    <p>The Brand Consistency Document runs 15 to 25 sections. The ICP covers two to three full client segments with emotional context maps. The Copy Framework includes side-by-side examples across six to eight copy scenarios. The email sequences are written to send — not outlines to customize later. The Growth Roadmap includes line-by-line revenue projections with auditable math.</p>
+    <p>A vault-connected website doesn't start with design — it starts with the ICP and the copy framework. That means every section of the site is written for a specific person at a specific moment in their decision process. The hero hook is written for attention. The problem section is written for urgency. The solution is written for trust. The CTA is written for conversion.</p>
 
-    <div class="pull-quote">
-      <p>"A client receiving the vault should feel, reading it, that someone spent a month inside their business — because someone did."</p>
+    <p>Below are two live examples of JRZ-built sites — each one showing the funnel structure behind the design.</p>
+
+    <!-- CaptureEveryCall -->
+    <div class="site-example">
+      <div class="site-example-header">
+        <div>
+          <div class="site-example-name">CaptureEveryCall</div>
+          <div class="site-example-type">AI call agent — trades businesses · Emergency services funnel</div>
+        </div>
+        <a href="https://captureeverycall.co/" target="_blank" class="site-link-btn">View Live →</a>
+      </div>
+      <div class="site-funnel-steps">
+        <div class="funnel-step-row">
+          <span class="funnel-step-num">01</span>
+          <span class="funnel-step-name">Hook</span>
+          <span class="funnel-step-desc">Pain-point headline in all caps — STOP LOSING $1,000+ JOBS TO VOICEMAIL. No warmup. Immediate urgency anchored to a real dollar figure.</span>
+        </div>
+        <div class="funnel-step-row">
+          <span class="funnel-step-num">02</span>
+          <span class="funnel-step-name">Problem</span>
+          <span class="funnel-step-desc">Narrative that makes the cost of inaction visceral — walks through the exact scenario where a job walks out the door in real time. Followed by a live cost calculator so the reader can run their own numbers.</span>
+        </div>
+        <div class="funnel-step-row">
+          <span class="funnel-step-num">03</span>
+          <span class="funnel-step-name">Proof</span>
+          <span class="funnel-step-desc">Live demo phone number — call it and hear the AI agent working. The product proves itself before the pitch is made.</span>
+        </div>
+        <div class="funnel-step-row">
+          <span class="funnel-step-num">04</span>
+          <span class="funnel-step-name">Solution</span>
+          <span class="funnel-step-desc">Three-step how-it-works breakdown. Every objection addressed. What's included in plain language — no feature list jargon.</span>
+        </div>
+        <div class="funnel-step-row">
+          <span class="funnel-step-num">05</span>
+          <span class="funnel-step-name">CTA</span>
+          <span class="funnel-step-desc">15-minute call audit — low commitment, specific outcome, no pressure language. CTA repeated three times throughout the page at natural decision points.</span>
+        </div>
+      </div>
     </div>
 
-    <p>The portal itself is built and hosted as a private web property — mobile-first, fully navigable, organized by phase. Every document accessible from any device, any time. No login walls. No PDFs buried in a shared drive. The vault lives where your team can actually use it.</p>
+    <!-- Mithu -->
+    <div class="site-example">
+      <div class="site-example-header">
+        <div>
+          <div class="site-example-name">Mithu Surendra</div>
+          <div class="site-example-type">Personal coach · Speaker · Transformation guide <span class="coming-soon-badge">Live End of Week</span></div>
+        </div>
+        <a href="https://zuba213213.github.io/Mithu.Surendra/" target="_blank" class="site-link-btn">View Vault →</a>
+      </div>
+      <div class="site-funnel-steps">
+        <div class="funnel-step-row">
+          <span class="funnel-step-num">01</span>
+          <span class="funnel-step-name">Hook</span>
+          <span class="funnel-step-desc">Identity-first headline — speaks directly to the transformation the ideal client is seeking, not the coach's credentials. Written from the ICP document outward.</span>
+        </div>
+        <div class="funnel-step-row">
+          <span class="funnel-step-num">02</span>
+          <span class="funnel-step-name">Story</span>
+          <span class="funnel-step-desc">Origin story and methodology pulled directly from the vault's Story & Process Document — creating emotional resonance before presenting any offer.</span>
+        </div>
+        <div class="funnel-step-row">
+          <span class="funnel-step-num">03</span>
+          <span class="funnel-step-name">Proof</span>
+          <span class="funnel-step-desc">Testimonial archive built into the vault — client outcomes and social proof assets deployed across the site in the language that matches the brand voice system.</span>
+        </div>
+        <div class="funnel-step-row">
+          <span class="funnel-step-num">04</span>
+          <span class="funnel-step-name">Offer</span>
+          <span class="funnel-step-desc">Methodology section structured to show the transformation process — not just what is offered, but how it works and why it's different.</span>
+        </div>
+        <div class="funnel-step-row">
+          <span class="funnel-step-num">05</span>
+          <span class="funnel-step-name">CTA</span>
+          <span class="funnel-step-desc">Discovery call framing — positioned as a conversation, not a sales process. Consistent with the vault's copy framework and the brand's non-prescriptive voice.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>"A website without a vault behind it is decoration. A website built from a vault is a conversion system."</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ WHAT YOU GET -->
+<section class="section">
+  <div class="wrap">
+    <span class="eyebrow">In Summary</span>
+    <h2>Everything <em>Included</em></h2>
+    <p class="section-intro">At a glance — everything that comes with the vault engagement.</p>
 
     <div class="summary-grid">
       <div class="summary-row">
-        <div class="summary-icon">◈</div>
+        <span class="summary-icon">◈</span>
         <div class="summary-text">
-          <strong>5 Core Documents</strong>
-          Brand Consistency · ICP · Copy Framework · Email Sequences · Growth Roadmap
+          <strong>5 Custom Documents</strong>
+          Brand Consistency · Ideal Client Profile · Copy Framework · Email Sequences · Growth Roadmap — all built from scratch for your business.
         </div>
       </div>
       <div class="summary-row">
-        <div class="summary-icon">◈</div>
+        <span class="summary-icon">◈</span>
         <div class="summary-text">
           <strong>Private Web Portal</strong>
-          Hosted, mobile-first, navigable by phase — not a PDF, not a shared drive
+          Hosted and mobile-first — not a PDF folder, not a shared drive. Organized by phase, accessible from any device, built to be used daily.
         </div>
       </div>
       <div class="summary-row">
-        <div class="summary-icon">◈</div>
+        <span class="summary-icon">◈</span>
         <div class="summary-text">
           <strong>8–12 Full Emails</strong>
-          Written to send — subject lines, preview text, timing, and platform setup included
+          Written to send — subject lines, preview text, timing, and platform setup instructions included. Four sequences ready to load and deploy.
         </div>
       </div>
       <div class="summary-row">
-        <div class="summary-icon">◈</div>
+        <span class="summary-icon">◈</span>
         <div class="summary-text">
           <strong>Revenue Roadmap With Math</strong>
-          Every projection anchored to your numbers and published industry benchmarks
+          Every projection anchored to your actual numbers and published industry benchmarks. Auditable line by line.
         </div>
       </div>
       <div class="summary-row">
-        <div class="summary-icon">◈</div>
+        <span class="summary-icon">◈</span>
         <div class="summary-text">
           <strong>Delivered in 30 Days</strong>
-          Intake → build → review → live. One engagement, full infrastructure
+          Deep-intake session → full build → your review → live. One engagement, complete infrastructure.
         </div>
       </div>
       <div class="summary-row">
-        <div class="summary-icon">◈</div>
+        <span class="summary-icon">◈</span>
         <div class="summary-text">
-          <strong>Built to Last</strong>
-          Living documents — designed to be updated, expanded, and built on top of
+          <strong>Website Funnel — Optional Add-On</strong>
+          A conversion-focused site built from the vault documents. Every section intentional, every word already aligned with your brand voice and ICP.
+        </div>
+      </div>
+      <div class="summary-row">
+        <span class="summary-icon">◈</span>
+        <div class="summary-text">
+          <strong>Living Documents</strong>
+          Built to grow. Updated as the business evolves. The vault is the infrastructure — everything you build on top of it runs cleaner because of it.
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════ CTA -->
 <section class="cta-section">
-  <div class="container">
+  <div class="wrap">
     <span class="eyebrow">Next Step</span>
-    <h2 class="section-title">Your Vault <em>Starts</em><br>With a Conversation</h2>
-    <p>If your marketing feels scattered, inconsistent, or like it's working but not compounding — the vault is where that changes.</p>
+    <h2>Your Vault Starts<br>With a <em>Conversation</em></h2>
+    <p>Text or call directly on WhatsApp. No pitch. No pressure. We'll look at your situation and tell you whether this is the right build for your business — before any next step is discussed.</p>
     <a href="https://wa.me/16822037801" target="_blank" class="cta-btn">Text or Call on WhatsApp</a>
-    <span class="cta-note">No pitch. No pressure. Text or call directly — +1 (682) 203-7801</span>
+    <span class="cta-note">+1 (682) 203-7801 · Available via WhatsApp</span>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════ FOOTER -->
 <footer class="footer">
-  <div class="container">
+  <div class="wrap">
     <div class="footer-brand">JRZ Consulting Solutions</div>
     <div class="footer-note">The Marketing Vault · Sales Collateral · 2026</div>
   </div>
 </footer>
+
+<script>
+  function toggle(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('open');
+  }
+</script>
 
 </body>
 </html>
