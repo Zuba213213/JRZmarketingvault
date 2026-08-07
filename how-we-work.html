@@ -16,6 +16,7 @@
     --gold-rule: rgba(138,157,118,0.35);
     --clay:#ba8659;
     --clay-light:#d3a97c;
+    --clay-lighter:#deba91;
     --cream:#f7f4ea;
     --cream-dim:#ddd6bf;
     --paper:#f7f4ea;
@@ -120,6 +121,7 @@
     transition:box-shadow .15s ease; touch-action:none;
   }
   .handle:active{cursor:grabbing; box-shadow:0 0 0 8px rgba(138,157,118,0.2);}
+  .handle:focus-visible{outline:2px solid var(--gold); outline-offset:4px; box-shadow:0 0 0 8px rgba(138,157,118,0.2);}
   .handle svg{width:15px;height:15px; color:var(--gold-dim);}
 
   .readout{margin-top:42px; min-height:118px; display:flex; align-items:center; justify-content:center; text-align:center;}
@@ -185,10 +187,10 @@
     display:inline-block; margin-top:34px;
     font-family:'Cinzel',serif; font-size:13px; font-weight:600;
     letter-spacing:0.2em; text-transform:uppercase; color:var(--ink);
-    background:var(--clay); border-radius:999px; padding:20px 44px; text-decoration:none;
+    background:var(--clay-light); border-radius:999px; padding:20px 44px; text-decoration:none;
     transition:background 0.2s, transform 0.2s;
   }
-  .cta-btn:hover{background:var(--clay-light); transform:translateY(-1px);}
+  .cta-btn:hover{background:var(--clay-lighter); transform:translateY(-1px);}
 
   @media(max-width:640px){
     .grid4{grid-template-columns:1fr;}
@@ -221,7 +223,7 @@
   .floating-cta{
     position:fixed; right:24px; bottom:24px; z-index:60;
     display:flex; align-items:center; gap:10px;
-    background:var(--clay); color:var(--ink);
+    background:var(--clay-light); color:var(--ink);
     border-radius:999px; padding:15px 24px 15px 16px; text-decoration:none;
     box-shadow:0 6px 24px rgba(14,12,10,0.28);
     font-family:'Cinzel',serif; font-size:12.5px; font-weight:600;
@@ -230,7 +232,7 @@
     animation:floatPulse 3.5s ease-in-out infinite;
   }
   .floating-cta svg{width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0;}
-  .floating-cta:hover{background:var(--clay-light); transform:translateY(-2px);}
+  .floating-cta:hover{background:var(--clay-lighter); transform:translateY(-2px);}
   @keyframes floatPulse{
     0%,100%{box-shadow:0 6px 24px rgba(14,12,10,0.28);}
     50%{box-shadow:0 6px 24px rgba(186,134,89,0.45);}
@@ -254,7 +256,7 @@
   <a class="back" href="index.html">← Back to Vault</a>
 </div>
 
-<a href="https://wa.me/16822037801" target="_blank" class="floating-cta" aria-label="Text or call JRZ Consulting on WhatsApp">
+<a href="https://wa.me/16822037801" target="_blank" rel="noopener noreferrer" class="floating-cta" aria-label="Text or call JRZ Consulting on WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
   <span>Text or Call</span>
 </a>
@@ -282,7 +284,7 @@
     </div>
     <div class="track" id="track">
       <div class="sweet-zone"></div>
-      <div class="handle" id="handle">
+      <div class="handle" id="handle" role="slider" tabindex="0" aria-label="Business structure spectrum, from full chaos to full lockdown" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="The sweet spot" aria-describedby="readout">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4"/></svg>
       </div>
     </div>
@@ -370,7 +372,7 @@
   <div class="eyebrow">Your move</div>
   <h2>Let's find your middle — together.</h2>
   <p class="sub">Not chaos. Not lockdown. The version of this that still feels like your business.</p>
-  <a href="https://wa.me/16822037801" target="_blank" class="cta-btn">Text or Call on WhatsApp</a>
+  <a href="https://wa.me/16822037801" target="_blank" rel="noopener noreferrer" class="cta-btn">Text or Call on WhatsApp</a>
 </section>
 
 <div class="vault-footer">JRZ Consulting Solutions · The Marketing Vault · How We Work</div>
@@ -393,6 +395,8 @@
   function updateReadout(pct){
     const m = messages.find(m => pct <= m.max);
     readout.innerHTML = `<b>${m.title}</b>${m.text}`;
+    handle.setAttribute('aria-valuenow', Math.round(pct));
+    handle.setAttribute('aria-valuetext', m.title);
   }
 
   function setPosition(pct){
@@ -409,6 +413,10 @@
     return ((clientX - rect.left) / rect.width) * 100;
   }
 
+  function currentPct(){
+    return parseFloat(handle.style.left) || 50;
+  }
+
   handle.addEventListener('mousedown', () => dragging = true);
   handle.addEventListener('touchstart', () => dragging = true, {passive:true});
   window.addEventListener('mouseup', () => dragging = false);
@@ -416,6 +424,14 @@
   window.addEventListener('mousemove', (e) => { if(dragging){ setPosition(pctFromEvent(e)); }});
   window.addEventListener('touchmove', (e) => { if(dragging){ setPosition(pctFromEvent(e)); }}, {passive:true});
   track.addEventListener('click', (e) => { if(e.target === handle) return; setPosition(pctFromEvent(e)); });
+
+  handle.addEventListener('keydown', (e) => {
+    const step = e.shiftKey ? 10 : 4;
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { setPosition(currentPct() - step); e.preventDefault(); }
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { setPosition(currentPct() + step); e.preventDefault(); }
+    else if (e.key === 'Home') { setPosition(3); e.preventDefault(); }
+    else if (e.key === 'End') { setPosition(97); e.preventDefault(); }
+  });
 
   setPosition(50);
 </script>
