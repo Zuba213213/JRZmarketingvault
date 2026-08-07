@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>La Bóveda de Marketing — JRZ Consulting Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -17,6 +19,7 @@
     --sage-rule: rgba(138,157,118,0.35);
     --clay: #ba8659;
     --clay-light: #d3a97c;
+    --clay-lighter: #deba91;
     --cream: #f7f4ea;
     --cream-dim: #ddd6bf;
     --ink: #2b2f24;
@@ -163,11 +166,12 @@
     backdrop-filter: blur(6px);
     border-bottom: 1px solid var(--sage-rule);
     opacity: 0;
+    visibility: hidden;
     transform: translateY(-100%);
     transition: opacity 0.4s ease, transform 0.4s ease;
     pointer-events: none;
   }
-  .tracker.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .tracker.visible { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
   .tracker-inner {
     max-width: 700px;
     margin: 0 auto;
@@ -776,8 +780,8 @@
     transition: background 0.2s, color 0.2s;
   }
   .site-link-btn:hover {
-    background: var(--sage);
-    color: var(--forest);
+    background: var(--sage-dim);
+    color: var(--cream);
   }
   .site-funnel-steps {
     border-top: 1px solid var(--sage-rule);
@@ -814,6 +818,10 @@
     font-size: 20px;
     color: var(--cream-dim);
     line-height: 1.6;
+  }
+  @media (max-width: 480px) {
+    .funnel-step-row { flex-direction: column; gap: 4px; }
+    .funnel-step-name { width: auto; }
   }
   .coming-soon-badge {
     display: inline-block;
@@ -977,7 +985,7 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--forest);
-    background: var(--clay);
+    background: var(--clay-light);
     border-radius: 999px;
     padding: 15px 28px;
     text-decoration: none;
@@ -985,7 +993,7 @@
     flex-shrink: 0;
     transition: background 0.2s, transform 0.2s;
   }
-  .mid-cta-btn:hover { background: var(--clay-light); transform: translateY(-1px); }
+  .mid-cta-btn:hover { background: var(--clay-lighter); transform: translateY(-1px); }
   @media (max-width: 560px) {
     .mid-cta { flex-direction: column; align-items: stretch; text-align: center; padding: 24px 22px; }
   }
@@ -998,7 +1006,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: var(--clay);
+    background: var(--clay-light);
     color: var(--forest);
     border-radius: 999px;
     padding: 15px 24px 15px 16px;
@@ -1013,7 +1021,7 @@
     animation: floatPulse 3.5s ease-in-out infinite;
   }
   .floating-cta svg { width: 20px; height: 20px; stroke-width: 2; flex-shrink: 0; }
-  .floating-cta:hover { background: var(--clay-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(43,47,36,0.28); }
+  .floating-cta:hover { background: var(--clay-lighter); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(43,47,36,0.28); }
   @keyframes floatPulse {
     0%, 100% { box-shadow: 0 6px 24px rgba(43,47,36,0.22); }
     50% { box-shadow: 0 6px 24px rgba(186,134,89,0.45); }
@@ -1050,13 +1058,13 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--forest);
-    background: var(--clay);
+    background: var(--clay-light);
     border-radius: 999px;
     padding: 22px 48px;
     text-decoration: none;
     transition: background 0.2s, transform 0.2s;
   }
-  .cta-btn:hover { background: var(--clay-light); transform: translateY(-1px); }
+  .cta-btn:hover { background: var(--clay-lighter); transform: translateY(-1px); }
   .cta-note {
     display: block;
     font-size: 20px;
@@ -1112,21 +1120,23 @@
   <symbol id="icon-expand" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></symbol>
 </svg>
 <!-- ═══════════════════════════════════ PROGRESS TRACKER -->
-<nav class="tracker" id="tracker">
+<nav class="tracker" id="tracker" aria-label="Progreso de la página">
   <div class="tracker-inner">
-    <a href="#why" class="tracker-step" data-target="why"><span class="tracker-dot"></span><span class="tracker-label">Problema</span></a>
+    <a href="#why" class="tracker-step" data-target="why" aria-label="Ir a la sección Problema"><span class="tracker-dot"></span><span class="tracker-label">Problema</span></a>
     <div class="tracker-line"></div>
-    <a href="#deliverables" class="tracker-step" data-target="deliverables"><span class="tracker-dot"></span><span class="tracker-label">Fundamento</span></a>
+    <a href="#deliverables" class="tracker-step" data-target="deliverables" aria-label="Ir a la sección Fundamento"><span class="tracker-dot"></span><span class="tracker-label">Fundamento</span></a>
     <div class="tracker-line"></div>
-    <a href="#architecture" class="tracker-step" data-target="architecture"><span class="tracker-dot"></span><span class="tracker-label">Cómo Funciona</span></a>
+    <a href="#architecture" class="tracker-step" data-target="architecture" aria-label="Ir a la sección Arquitectura"><span class="tracker-dot"></span><span class="tracker-label">Arquitectura</span></a>
     <div class="tracker-line"></div>
-    <a href="#investment" class="tracker-step" data-target="investment"><span class="tracker-dot"></span><span class="tracker-label">Inversión</span></a>
+    <a href="#investment" class="tracker-step" data-target="investment" aria-label="Ir a la sección Inversión"><span class="tracker-dot"></span><span class="tracker-label">Inversión</span></a>
     <div class="tracker-line"></div>
-    <a href="#cta" class="tracker-step" data-target="cta"><span class="tracker-dot"></span><span class="tracker-label">Siguiente Paso</span></a>
+    <a href="how-we-work.html" class="tracker-step" aria-label="Ir a la página Cómo Trabajamos"><span class="tracker-dot"></span><span class="tracker-label">Cómo Trabajamos</span></a>
+    <div class="tracker-line"></div>
+    <a href="#cta" class="tracker-step" data-target="cta" aria-label="Ir a la sección Siguiente Paso"><span class="tracker-dot"></span><span class="tracker-label">Siguiente Paso</span></a>
   </div>
 </nav>
 <!-- ═══════════════════════════════════ FLOATING CTA -->
-<a href="https://wa.me/16822037801" target="_blank" class="floating-cta" aria-label="Escribir o llamar a JRZ Consulting por WhatsApp">
+<a href="https://wa.me/16822037801" target="_blank" rel="noopener noreferrer" class="floating-cta" aria-label="Escribir o llamar a JRZ Consulting por WhatsApp">
   <svg class="icon"><use href="#icon-chat"/></svg>
   <span>Escribir o Llamar</span>
 </a>
@@ -1178,7 +1188,7 @@
         <span style="font-family:'Cinzel',serif; font-size:12px; color:var(--sage-dim); flex-shrink:0; width:20px;">→</span>
         <span style="font-size:20px; color:var(--ink-soft); line-height:1.6;">Todo se <strong style="color:var(--ink); font-weight:500;">entrega en 30 días</strong> en un portal web privado, pensado para móvil. No son PDFs. No es una carpeta compartida. Es un sistema que realmente vas a usar.</span>
       </a>
-      <a href="https://wa.me/16822037801" target="_blank" style="display:flex; align-items:baseline; gap:16px; padding:20px 24px; background:rgba(138,157,118,0.12); text-decoration:none; transition:background 0.2s;">
+      <a href="https://wa.me/16822037801" target="_blank" rel="noopener noreferrer" style="display:flex; align-items:baseline; gap:16px; padding:20px 24px; background:rgba(138,157,118,0.12); text-decoration:none; transition:background 0.2s;">
         <span style="font-family:'Cinzel',serif; font-size:12px; color:var(--sage-dim); flex-shrink:0; width:20px;">→</span>
         <span style="font-size:20px; color:var(--ink); line-height:1.6; font-style:italic;">Todo empieza con una conversación por WhatsApp. Sin presión de venta. Solo tu situación y si esto es lo que tu negocio necesita. <strong style="color:var(--sage-dim); font-weight:600;">Escríbenos o llámanos ahora.</strong></span>
       </a>
@@ -1196,7 +1206,7 @@
         <span>Antes del sitio web, los anuncios, las publicaciones — esto va primero.</span>
       </div>
     </div>
-    <p class="lead">La mayoría de los negocios no tienen un problema de marketing. Tienen un <strong>problema de arquitectura.</strong></p>
+    <h2 class="lead">La mayoría de los negocios no tienen un problema de marketing. Tienen un <strong>problema de arquitectura.</strong></h2>
     <p>Se invierte energía. Se publican posts. Corren los anuncios. Se construye un sitio web. Pero sin una base — sin un sistema documentado que defina quién eres, a quién sirves y qué busca lograr cada pieza de comunicación — nada de eso se acumula. Solo cuesta.</p>
     <!-- CHAOS → CLARITY VISUAL -->
     <div class="relief-visual reveal">
@@ -1255,7 +1265,7 @@
         <strong>¿Te sientes identificado?</strong>
         <span>Hablemos de lo que tu base realmente necesita.</span>
       </div>
-      <a href="https://wa.me/16822037801" target="_blank" class="mid-cta-btn">Escribir o Llamar →</a>
+      <a href="https://wa.me/16822037801" target="_blank" rel="noopener noreferrer" class="mid-cta-btn">Escribir o Llamar →</a>
     </div>
   </div>
 </section>
@@ -1271,7 +1281,7 @@
     </div>
     <!-- 01 -->
     <div class="accordion open reveal" id="acc1">
-      <button class="accordion-header" onclick="toggle('acc1')">
+      <button class="accordion-header" onclick="toggle('acc1')" aria-expanded="true" aria-controls="acc1-body">
         <span class="accordion-icon"><svg class="icon"><use href="#icon-compass"/></svg></span>
         <div class="accordion-title-block">
           <span class="accordion-tag">Fundamento</span>
@@ -1280,7 +1290,7 @@
         </div>
         <span class="accordion-arrow">▾</span>
       </button>
-      <div class="accordion-body">
+      <div class="accordion-body" id="acc1-body">
         <p>El primer documento que cualquiera revisa antes de producir algo en tu nombre. Paleta de colores completa con códigos hexadecimales. Sistema tipográfico con reglas de uso para cada tamaño y peso. Guías de aplicación del logo para cada contexto — impreso, digital, fondos oscuros, formatos pequeños. Dirección fotográfica para que cada imagen se sienta parte del mismo mundo.</p>
         <p>En el centro está tu perfil de voz — extraído de cómo realmente hablas. No una descripción genérica de "profesional pero accesible". Tus patrones de lenguaje específicos, con ejemplos correctos e incorrectos lado a lado para cada canal. Cualquiera que produzca contenido en tu nombre — contratistas, asistentes virtuales, herramientas de IA — opera desde este estándar.</p>
         <!-- COLOR SCHEME EXAMPLE -->
@@ -1331,7 +1341,7 @@
     </div>
     <!-- 02 -->
     <div class="accordion reveal" id="acc2">
-      <button class="accordion-header" onclick="toggle('acc2')">
+      <button class="accordion-header" onclick="toggle('acc2')" aria-expanded="false" aria-controls="acc2-body">
         <span class="accordion-icon"><svg class="icon"><use href="#icon-target"/></svg></span>
         <div class="accordion-title-block">
           <span class="accordion-tag">Audiencia</span>
@@ -1340,7 +1350,7 @@
         </div>
         <span class="accordion-arrow">▾</span>
       </button>
-      <div class="accordion-body">
+      <div class="accordion-body" id="acc2-body">
         <p>No es una descripción demográfica. Es un retrato profundo de la persona específica con más probabilidades de decir que sí, pagar a tiempo y enviarte tres clientes más. Este documento mapea el contexto emocional en el que se encuentra tu cliente ideal cuando empieza a buscar — de qué tiene miedo, qué ya ha intentado, qué quiere escuchar en secreto y qué finalmente lo hace decidirse.</p>
         <p>Cubre de dos a tres segmentos distintos de clientes, cada uno con su propio arco emocional, sus propios factores de decisión y su propio conjunto de objeciones. Escrito en el lenguaje que tu cliente ideal usa para describirse a sí mismo — porque ese es el lenguaje que convierte en el copy, en los anuncios y en cada conversación de venta.</p>
         <!-- ICP VISUAL — Business Owner looking at this vault -->
@@ -1402,7 +1412,7 @@
     </div>
     <!-- 03 -->
     <div class="accordion reveal" id="acc3">
-      <button class="accordion-header" onclick="toggle('acc3')">
+      <button class="accordion-header" onclick="toggle('acc3')" aria-expanded="false" aria-controls="acc3-body">
         <span class="accordion-icon"><svg class="icon"><use href="#icon-quill"/></svg></span>
         <div class="accordion-title-block">
           <span class="accordion-tag">Copywriting</span>
@@ -1411,7 +1421,7 @@
         </div>
         <span class="accordion-arrow">▾</span>
       </button>
-      <div class="accordion-body">
+      <div class="accordion-body" id="acc3-body">
         <p>El documento que elimina la sensación de que tus publicaciones en redes, tus secuencias de correo y la página de inicio de tu sitio web fueron escritas por tres personas distintas. Cuatro ejes de voz definen tu tono. Reglas de escritura para correo, redes sociales y web. Ejemplos correctos e incorrectos lado a lado para cada canal.</p>
         <p>Una vez construido, cualquiera que produzca contenido en tu nombre opera desde un mismo estándar. La voz es portátil — se mueve entre herramientas de IA, freelancers y plataformas sin diluir lo que hace reconocible a tu marca.</p>
         <!-- SOCIAL MEDIA SIDE BY SIDE -->
@@ -1454,7 +1464,7 @@
     </div>
     <!-- 04 -->
     <div class="accordion reveal" id="acc4">
-      <button class="accordion-header" onclick="toggle('acc4')">
+      <button class="accordion-header" onclick="toggle('acc4')" aria-expanded="false" aria-controls="acc4-body">
         <span class="accordion-icon"><svg class="icon"><use href="#icon-mail"/></svg></span>
         <div class="accordion-title-block">
           <span class="accordion-tag">Ejecución</span>
@@ -1463,7 +1473,7 @@
         </div>
         <span class="accordion-arrow">▾</span>
       </button>
-      <div class="accordion-body">
+      <div class="accordion-body" id="acc4-body">
         <p>Aquí es donde la estrategia se convierte en dinero. Normalmente cuatro secuencias, de ocho a doce correos en total — escritos, secuenciados y listos para cargar en tu plataforma de correo. Líneas de asunto. Texto de vista previa. Momento de envío. Instrucciones de configuración de la plataforma. Copy completo, listo para usar desde el primer día.</p>
         <p>Secuencias estándar: seguimiento a nuevas consultas, reactivación de contactos inactivos, venta adicional post-servicio, y recordatorio de cliente recurrente / referidos. Cada secuencia está construida alrededor del estado emocional real de tu cliente en ese momento del recorrido — no un genérico "solo quería saludar".</p>
         <!-- EMAIL CADENCE LOGIC FLOW -->
@@ -1564,7 +1574,7 @@
     </div>
     <!-- 05 -->
     <div class="accordion reveal" id="acc5">
-      <button class="accordion-header" onclick="toggle('acc5')">
+      <button class="accordion-header" onclick="toggle('acc5')" aria-expanded="false" aria-controls="acc5-body">
         <span class="accordion-icon"><svg class="icon"><use href="#icon-map"/></svg></span>
         <div class="accordion-title-block">
           <span class="accordion-tag">Estrategia</span>
@@ -1573,7 +1583,7 @@
         </div>
         <span class="accordion-arrow">▾</span>
       </button>
-      <div class="accordion-body">
+      <div class="accordion-body" id="acc5-body">
         <p>El diagnóstico y la receta en un solo documento. Dónde se está escapando tu ingreso actualmente, cuánto vale cada brecha matemáticamente, y el plan secuenciado a 90 días para cerrarlas — construido alrededor de tu modelo de negocio específico, no un marco genérico.</p>
         <p>Cada proyección está anclada a puntos de referencia de la industria y a tus propios números. La hoja de ruta muestra qué hacer, por qué, en qué orden y cómo se ven las matemáticas en cada fase — estructurada alrededor de Construir → Optimizar → Activar: 30 días de infraestructura, 30 de implementación, 30 de acumulación.</p>
         <!-- Graph preview -->
@@ -1641,7 +1651,7 @@
         <strong>¿Quieres esto construido para tu negocio?</strong>
         <span>Cada documento de arriba, totalmente personalizado, en 30 días.</span>
       </div>
-      <a href="https://wa.me/16822037801" target="_blank" class="mid-cta-btn">Escribir o Llamar →</a>
+      <a href="https://wa.me/16822037801" target="_blank" rel="noopener noreferrer" class="mid-cta-btn">Escribir o Llamar →</a>
     </div>
   </div>
 </section>
@@ -1752,7 +1762,7 @@
     </div>
     <p style="margin-top:40px;">Un solo pago. Entregado en 30 días. Los cinco documentos, secuenciados y construidos juntos — no vendidos por separado. El sitio web como complemento se cotiza aparte, según el tamaño del proyecto.</p>
     <div style="text-align:center; margin-top:36px;">
-      <a href="https://wa.me/16822037801" target="_blank" class="cta-btn" style="padding:20px 46px;">Reclama Tu Bóveda →</a>
+      <a href="https://wa.me/16822037801" target="_blank" rel="noopener noreferrer" class="cta-btn" style="padding:20px 46px;">Reclama Tu Bóveda →</a>
     </div>
   </div>
 </section>
@@ -1771,7 +1781,7 @@
           <div class="site-example-name">CaptureEveryCall</div>
           <div class="site-example-type">Agente de IA para llamadas — negocios de oficios · Embudo de servicios de emergencia</div>
         </div>
-        <a href="https://captureeverycall.co/" target="_blank" class="site-link-btn">Ver en Vivo →</a>
+        <a href="https://captureeverycall.co/" target="_blank" rel="noopener noreferrer" class="site-link-btn">Ver en Vivo →</a>
       </div>
       <div class="site-funnel-steps">
         <div class="funnel-step-row">
@@ -1808,7 +1818,7 @@
           <div class="site-example-name">Mithu Surendra</div>
           <div class="site-example-type">Coach personal · Conferencista · Guía de transformación <span class="coming-soon-badge">Próximamente</span></div>
         </div>
-        <a href="https://zuba213213.github.io/Mithu.Surendra/" target="_blank" class="site-link-btn">Ver Bóveda →</a>
+        <a href="https://zuba213213.github.io/Mithu.Surendra/" target="_blank" rel="noopener noreferrer" class="site-link-btn">Vista Previa →</a>
       </div>
       <div class="site-funnel-steps">
         <div class="funnel-step-row">
@@ -1846,7 +1856,7 @@
         <strong>¿Quieres un embudo construido desde tu bóveda?</strong>
         <span>Lo definimos juntos una vez que tu base esté lista.</span>
       </div>
-      <a href="https://wa.me/16822037801" target="_blank" class="mid-cta-btn">Escribir o Llamar →</a>
+      <a href="https://wa.me/16822037801" target="_blank" rel="noopener noreferrer" class="mid-cta-btn">Escribir o Llamar →</a>
     </div>
   </div>
 </section>
@@ -1937,7 +1947,7 @@
     <span class="eyebrow">Siguiente Paso</span>
     <h2>Tu Bóveda Empieza<br>Con Una <em>Conversación</em></h2>
     <p>Escríbenos o llámanos directamente por WhatsApp. Sin presión de venta. Vamos a revisar tu situación y decirte si esto es lo que tu negocio realmente necesita — antes de hablar de cualquier siguiente paso.</p>
-    <a href="https://wa.me/16822037801" target="_blank" class="cta-btn">Escribir o Llamar por WhatsApp</a>
+    <a href="https://wa.me/16822037801" target="_blank" rel="noopener noreferrer" class="cta-btn">Escribir o Llamar por WhatsApp</a>
     <span class="cta-note">+1 (682) 203-7801 · Disponible por WhatsApp</span>
   </div>
 </section>
@@ -1951,7 +1961,9 @@
 <script>
   function toggle(id) {
     const el = document.getElementById(id);
-    el.classList.toggle('open');
+    const isOpen = el.classList.toggle('open');
+    const btn = el.querySelector('.accordion-header');
+    if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   }
 
   // Scroll-reveal
